@@ -1,97 +1,386 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
+
 <head>
-<title>internet hotspot > login</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta http-equiv="pragma" content="no-cache" />
-<meta http-equiv="expires" content="-1" />
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;"/>
-<style type="text/css">
-body {color: #737373; font-size: 10px; font-family: verdana;}
+    <title>internet hotspot > login</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="expires" content="-1" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" />
+    <link href="output.css" rel="stylesheet" />
+    <style>
+        .glass {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3), -2px -2px 5px rgba(255, 255, 255, 0.5);
+        }
 
-textarea,input,select {
-background-color: #FDFBFB;
-border: 1px solid #BBBBBB;
-padding: 2px;
-margin: 1px;
-font-size: 14px;
-color: #808080;
-}
+        .cloud-bg {
+            background-image: url('img/cloud-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
 
-a, a:link, a:visited, a:active { color: #AAAAAA; text-decoration: none; font-size: 10px; }
-a:hover { border-bottom: 1px dotted #c1c1c1; color: #AAAAAA; }
-img {border: none;}
-td { font-size: 14px; color: #7A7A7A; }
-</style>
+        .carousel-container {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
 
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+            height: 100%;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .carousel-content {
+            padding-bottom: 60px;
+            /* Increased spacing from dots */
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+
+        .carousel-dot {
+            width: 20px;
+            /* Wider to make it look like a stripe */
+            height: 3px;
+            /* Shorter to make it look like a stripe */
+            border-radius: 1px;
+            /* Just slightly rounded corners */
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background-color: white;
+        }
+
+        @media (max-width: 768px) {
+            .desktop-layout {
+                flex-direction: column;
+            }
+
+            .carousel-section {
+                height: 400px !important;
+                width: 100% !important;
+                /* Add this to ensure full width */
+            }
+
+            .form-section {
+                width: 100% !important;
+            }
+
+            /* Add these styles to fix carousel in mobile view */
+            .carousel-container {
+                width: 100%;
+            }
+
+            .carousel-slide {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 
-<body>
-$(if chap-id)
-	<form name="sendin" action="$(link-login-only)" method="post">
-		<input type="hidden" name="username" />
-		<input type="hidden" name="password" />
-		<input type="hidden" name="dst" value="$(link-orig)" />
-		<input type="hidden" name="popup" value="true" />
-	</form>
-	
-	<script type="text/javascript" src="/md5.js"></script>
-	<script type="text/javascript">
-	<!--
-	    function doLogin() {
-		document.sendin.username.value = document.login.username.value;
-		document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
-		document.sendin.submit();
-		return false;
-	    }
-	//-->
-	</script>
-$(endif)
+<body class="cloud-bg min-h-screen flex items-center justify-center p-4">
+    $(if chap-id)
+    <form name="sendin" action="$(link-login-only)" method="post">
+        <input type="hidden" name="username" />
+        <input type="hidden" name="password" />
+        <input type="hidden" name="dst" value="$(link-orig)" />
+        <input type="hidden" name="popup" value="true" />
+    </form>
+    <script type="text/javascript" src="/md5.js"></script>
+    <script type="text/javascript">
+        function doLogin() {
+            document.sendin.username.value = document.login.username.value;
+            document.sendin.password.value = hexMD5(
+                "$(chap-id)" + document.login.password.value + "$(chap-challenge)"
+            );
+            document.sendin.submit();
+            return false;
+        }
+    </script>
+    $(endif)
 
-<div align="center">
-<a href="$(link-login-only)?target=lv&amp;dst=$(link-orig-esc)">Latviski</a>
-</div>
+    <div
+        class="min-w-[400px] max-w-screen-xl mx-auto font-display desktop-layout glass rounded-3xl overflow-hidden flex shadow-xl">
+        <!-- Carousel Section -->
+        <div class="carousel-section w-1/2 h-full">
+            <div class="carousel-container">
+                <div class="carousel" id="carousel">
+                    <div class="carousel-slide" style="background-image: url('img/slide1.jpg');">
+                        <div class="h-full flex flex-col justify-end p-6 bg-gradient-to-t from-black/60 to-transparent">
+                            <div class="carousel-content">
+                                <h2 class="text-white text-xl font-bold">Lorem ipsum dolor sit amet</h2>
+                                <p class="text-white/80 text-sm mt-2">Consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('img/slide2.jpg');">
+                        <div class="h-full flex flex-col justify-end p-6 bg-gradient-to-t from-black/60 to-transparent">
+                            <div class="carousel-content">
+                                <h2 class="text-white text-xl font-bold">Lorem ipsum dolor sit amet</h2>
+                                <p class="text-white/80 text-sm mt-2">Consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('img/slide3.jpg');">
+                        <div class="h-full flex flex-col justify-end p-6 bg-gradient-to-t from-black/60 to-transparent">
+                            <div class="carousel-content">
+                                <h2 class="text-white text-xl font-bold">Lorem ipsum dolor sit amet</h2>
+                                <p class="text-white/80 text-sm mt-2">Consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-dots" id="carousel-dots">
+                    <div class="carousel-dot active" data-index="0"></div>
+                    <div class="carousel-dot" data-index="1"></div>
+                    <div class="carousel-dot" data-index="2"></div>
+                </div>
+            </div>
+        </div>
 
-<table width="100%" style="margin-top: 10%;">
-	<tr>
-	<td align="center" valign="middle">
-		<div class="notice" style="color: #c1c1c1; font-size: 9px">Please log on to use the internet hotspot service<br />$(if trial == 'yes')Free trial available, <a style="color: #FF8080"href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">click here</a>.$(endif)</div><br />
-		<table width="280" height="280" style="border: 1px solid #cccccc; padding: 0px;" cellpadding="0" cellspacing="0">
-			<tr>
-				<td align="center" valign="bottom" height="175" colspan="2">
-					<form name="login" action="$(link-login-only)" method="post"
-					    $(if chap-id) onSubmit="return doLogin()" $(endif)>
-						<input type="hidden" name="dst" value="$(link-orig)" />
-						<input type="hidden" name="popup" value="true" />
-						
-							<table width="100" style="background-color: #ffffff">
-								<tr><td align="right">login</td>
-										<td><input style="width: 80px" name="username" type="text" value="$(username)"/></td>
-								</tr>
-								<tr><td align="right">password</td>
-										<td><input style="width: 80px" name="password" type="password"/></td>
-								</tr>
-								<tr><td>&nbsp;</td>
-										<td><input type="submit" value="OK" /></td>
-								</tr>
-							</table>
-					</form>
-				</td>
-			</tr>
-			<tr><td align="center"><a href="http://www.mikrotik.com" target="_blank" style="border: none;"><img src="img/logobottom.png" alt="mikrotik" /></a></td></tr>
-		</table>
-	
-	<br /><div style="color: #c1c1c1; font-size: 9px">Powered by MikroTik RouterOS</div>
-	$(if error)<br /><div style="color: #FF8080; font-size: 9px">$(error)</div>$(endif)
-	</td>
-	</tr>
-</table>
+        <!-- Form Section -->
+        <div class="font-display form-section w-1/2 bg-white/20 backdrop-filter backdrop-blur-lg p-8 flex flex-col">
+            <div class="rounded-2xl p-3 bg-white/30 shadow-lg mb-6 self-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="text-gray-800">
+                    <path d="m10 17 5-5-5-5" />
+                    <path d="M15 12H3" />
+                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                </svg>
+            </div>
+            <h1 class="text-black font-display mt-2 text-2xl mb-4 text-center">
+                Selamat Datang di <br> <span class="font-bold">G-House Demangan</span>
+            </h1>
+            <p class="text-center text-sm mb-6">
+                Silakan login untuk menggunakan internet.<br />Untuk bantuan, silakan hubungi
+                resepsionis.
+            </p>
+            <form name="login" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()"
+                $(endif) class="w-full">
+                <input type="hidden" name="dst" value="$(link-orig)" />
+                <input type="hidden" name="popup" value="true" />
+                <div class="mb-4">
+                    <label for="username" class="block text-sm font-medium mb-1">Room Number or Username</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-user-icon lucide-user text-gray-500">
+                                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
+                            </svg>
+                        </div>
+                        <input name="username" type="text" value="$(username)"
+                            class="w-full bg-white/30 border border-white/40 pl-10 px-3 py-2 focus:outline-none rounded-2xl"
+                            placeholder="Enter your room number or username" />
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <label for="password" class="block text-sm font-medium mb-1">Password</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="text-gray-500">
+                                <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                            </svg>
+                        </div>
+                        <input name="password" id="password" type="password"
+                            class="w-full bg-white/30 border border-white/40 pl-10 px-3 py-2 focus:outline-none rounded-2xl"
+                            placeholder="Enter your password" />
+                        <div class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
+                            onclick="togglePassword()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="text-gray-500" id="eye-icon">
+                                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                                <circle cx="12" cy="12" r="3" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="text-gray-500 hidden" id="eye-off-icon">
+                                <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24" />
+                                <path
+                                    d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68" />
+                                <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61" />
+                                <line x1="2" x2="22" y1="2" y2="22" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit"
+                    class="w-full h-10 relative flex items-center justify-center text-sm font-medium text-white py-2.5 px-4 rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900  hover:border-0 shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-white/20 focus:ring-offset-1 hover:bg-gradient-to-br hover:from-white hover:to-gray-100 hover:text-gray-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="mr-4 ">
+                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                        <polyline points="10 17 15 12 10 7" />
+                        <line x1="15" y1="12" x2="3" y2="12" />
+                    </svg>
+                    Log In
+                </button>
+            </form>
+            $(if trial == 'yes')
+            <div class="mt-4 text-sm /80 text-center">
+                Free trial available,
+                <a class="underline hover:"
+                    href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">click
+                    here</a>.
+            </div>
+            $(endif) $(if error)
+            <div class="mt-4 text-red-600 text-center text-sm">$(error)</div>
+            $(endif)
 
-<script type="text/javascript">
-<!--
-  document.login.username.focus();
-//-->
-</script>
+            <div class="mt-auto pt-4">
+                <div class="text-xs /70 text-center">
+                    Powered by MikroTik RouterOS
+                </div>
+                <div class="mt-2 text-xs /70 text-center">
+                    <a href="$(link-login-only)?target=lv&amp;dst=$(link-orig-esc)"
+                        class="underline hover:">Latviski</a>
+                </div>
+                <div class="flex justify-center mt-3">
+                    <img src="img/logobottom.png" alt="Hotel Logo"
+                        class="w-20 rounded-full shadow border border-white/20" />
+                </div>
+            </div>
+            <div class="footer mt-6 text-center">
+                <div class="social-icons flex justify-center items-center gap-4">
+                    <a href="https://instagram.com/yourusername" target="_blank" class="text-gray-700 hover:text-gray-900 transition-colors duration-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-instagram">
+                            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                        </svg>
+                    </a>
+                    <a href="https://wa.me/yourphonenumber" target="_blank" class="text-gray-700 hover:text-gray-900 transition-colors duration-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-message-circle">
+                            <path
+                                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+                            </path>
+                        </svg>
+                    </a>
+                </div>
+                <p class="text-xs text-gray-600 mt-3">&copy; 2025 G-House Demangan. All rights reserved.</p>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        document.login.username.focus();
+
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = document.getElementById('eye-icon');
+            const eyeOffIcon = document.getElementById('eye-off-icon');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.classList.add('hidden');
+                eyeOffIcon.classList.remove('hidden');
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.classList.remove('hidden');
+                eyeOffIcon.classList.add('hidden');
+            }
+        }
+
+        // Carousel functionality
+        let currentSlide = 0;
+        const carousel = document.getElementById('carousel');
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.carousel-dot');
+        const totalSlides = slides.length;
+
+        // Set initial state
+        updateCarousel();
+
+        // Auto-advance the carousel every 5 seconds
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }, 5000);
+
+        // Click functionality for dots
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                currentSlide = parseInt(dot.getAttribute('data-index'));
+                updateCarousel();
+            });
+        });
+
+        function updateCarousel() {
+            // Update carousel position
+            carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+            // Update dots
+            dots.forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        // Make responsive adjustments on page load and window resize
+        function handleResponsiveLayout() {
+            const container = document.querySelector('.desktop-layout');
+            const carouselSection = document.querySelector('.carousel-section');
+            const formSection = document.querySelector('.form-section');
+
+            if (window.innerWidth <= 768) {
+                container.classList.add('flex-col');
+                carouselSection.style.height = '200px';
+                carouselSection.style.width = '100%';  // Ensure width is 100%
+                formSection.style.width = '100%';
+            } else {
+                container.classList.remove('flex-col');
+                carouselSection.style.height = 'auto';
+                carouselSection.style.width = '50%';  // Restore to 50% on desktop
+                formSection.style.width = '50%';
+            }
+        }
+
+        // Initial call and event listener
+        handleResponsiveLayout();
+        window.addEventListener('resize', handleResponsiveLayout);
+    </script>
 </body>
+
 </html>
