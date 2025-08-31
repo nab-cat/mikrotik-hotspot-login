@@ -87,7 +87,11 @@ A fully customizable **HTML/CSS/JS login page** for MikroTik Hotspot, designed t
 
 ## 📷 Screenshot (Optional)
 
-*Add a screenshot here of your custom login page for better documentation.*
+Before
+![Custom MikroTik Login Page](./before.png)
+
+After
+![Custom MikroTik Login Page](./after.png)
 
 ---
 
