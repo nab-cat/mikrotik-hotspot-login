@@ -105,5 +105,3 @@ images/
 ## 📄 License
 
 MIT – free to use and modify.
-
-👉 Do you want me to also include a **very short “Troubleshooting” section** (like redirect not working, CSS not applied, etc.), or keep it just this clean version?
