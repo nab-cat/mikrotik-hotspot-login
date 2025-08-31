@@ -1,26 +1,28 @@
 # 🔑 Custom HTML Login Page for MikroTik Hotspot
 
-A fully customizable **HTML/CSS/JS login page** for MikroTik Hotspot, designed to replace the default MikroTik login template with a modern, user-friendly UI.
-
-## 🚀 Features
-
-* ✅ Clean and responsive design (works on desktop & mobile)
-* ✅ Easy to customize (HTML, CSS, JS only)
-* ✅ Plug-and-play with MikroTik Hotspot
-* ✅ Supports logo, background, and custom branding
-* ✅ Compatible with all MikroTik RouterOS Hotspot setups
+A modern **Tailwind CSS v4 + HTML/JS login page** for MikroTik Hotspot.
+This replaces the default MikroTik login with a clean, responsive, and fully customizable page.
 
 ---
 
-## 📊 Comparison: Default vs Custom Login
+## 🚀 Features
 
-| Feature             | MikroTik Default Login | Custom HTML Login              |
-| ------------------- | ---------------------- | ------------------------------ |
-| **Design**          | Very basic, outdated   | Modern, responsive, brandable  |
-| **Customization**   | Limited (text only)    | Full control (HTML, CSS, JS)   |
-| **User Experience** | Plain form, no styling | Interactive, better UI/UX      |
-| **Mobile Friendly** | Not optimized          | 100% mobile-friendly           |
-| **Branding**        | Cannot add easily      | Add logos, colors, backgrounds |
+* ✅ Responsive design (desktop & mobile)
+* ✅ Built with **Tailwind CSS v4**
+* ✅ Easy to customize via `input.css → output.css`
+* ✅ Supports logo, background, and branding
+* ✅ Plug-and-play with MikroTik Hotspot
+
+---
+
+## 📊 Default vs Custom
+
+| Feature             | Default Login | Custom Login              |
+| ------------------- | ------------- | ------------------------- |
+| **Design**          | Outdated      | Modern, responsive        |
+| **Customization**   | Very limited  | Full (HTML + Tailwind)    |
+| **Branding**        | Hard to add   | Logo, colors, backgrounds |
+| **Mobile Friendly** | No            | Yes ✅                     |
 
 ---
 
@@ -28,83 +30,80 @@ A fully customizable **HTML/CSS/JS login page** for MikroTik Hotspot, designed t
 
 ### 1. Prepare Files
 
-1. Download or clone this repository.
-2. Inside you’ll find files like:
+Repo includes:
 
+```
+login.html
+logout.html
+md5.js
+input.css
+output.css   ← generated CSS
+images/
+```
+
+### 2. Build CSS (if customizing)
+
+1. Edit styles in `input.css` (Tailwind utility classes).
+2. Run Tailwind build:
+
+   ```bash
+   npx tailwindcss -i ./input.css -o ./output.css --watch
    ```
-   login.html
-   logout.html
-   md5.js
-   style.css
-   images/
-   ```
 
-### 2. Upload to MikroTik
+   > This compiles your styles into `output.css`, which is linked in `login.html`.
 
-1. Connect to your router via **Winbox / WebFig / FTP**.
-2. Go to:
+### 3. Upload to MikroTik
 
-   ```
-   Files → Drag & Drop all custom login files
-   ```
-3. Ensure all files are uploaded to the root `/hotspot/` directory.
+1. Connect via **Winbox / WebFig / FTP**.
+2. Go to **Files** → upload all project files.
+3. Make sure they’re inside `/hotspot/` directory.
 
-### 3. Apply the Custom Login
+### 4. Apply Custom Login
 
-1. Open **IP → Hotspot → Server Profiles**.
-2. Edit your active Hotspot profile.
-3. In the **HTML Directory** field, set it to:
+1. Go to **IP → Hotspot → Server Profiles**.
+2. Edit your active profile.
+3. Set **HTML Directory** to:
 
    ```
    hotspot
    ```
 
-   (or your chosen folder name).
+### 5. Test
 
-### 4. Test
-
-1. Connect a device to your Hotspot.
-2. When redirected, you should now see the custom login page.
-3. Try logging in with your Hotspot credentials.
+* Connect to your Hotspot → login redirect shows your new page.
+* Try logging in with valid credentials.
 
 ---
 
 ## 🛠️ Customization
 
-* Replace `logo.png` in `/images/` with your own logo.
-* Edit `style.css` to match your brand colors.
-* Modify `login.html` for extra fields, announcements, or terms & conditions.
+* Replace `/images/logo.png` with your own.
+* Edit `input.css` (e.g., brand colors, spacing).
+* Rebuild Tailwind to update `output.css`.
+* Edit `login.html` for text, fields, or announcements.
 
 ---
 
 ## 📜 Notes
 
-* Make sure `md5.js` is included — MikroTik uses MD5 hashing for login.
-* File names must match the default MikroTik hotspot filenames (`login.html`, `logout.html`).
-* Always keep a backup of the default login in case you need to revert.
+* Don’t remove `md5.js` → MikroTik requires it for login.
+* File names must match defaults (`login.html`, `logout.html`).
+* Keep a backup of the original hotspot files.
 
 ---
 
-## 📷 Screenshot (Optional)
+## 📷 Screenshots
 
-Before
-![Custom MikroTik Login Page](./before.png)
+**Before (Default)**
+![MikroTik Default Login](./before.png)
 
-After
-![Custom MikroTik Login Page](./after.png)
-
----
-
-## 🤝 Contributing
-
-Pull requests and improvements are welcome.
+**After (Custom)**
+![Custom MikroTik Login](./after.png)
 
 ---
 
 ## 📄 License
 
-MIT License – free to use and modify.
+MIT – free to use and modify.
 
----
-
-👉 Do you want me to also write a **short troubleshooting section** (like "why login page not showing" / "stuck on redirect") in case users face issues, or keep it clean and simple?
+👉 Do you want me to also include a **very short “Troubleshooting” section** (like redirect not working, CSS not applied, etc.), or keep it just this clean version?
