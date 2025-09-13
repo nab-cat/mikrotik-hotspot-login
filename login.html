@@ -75,6 +75,16 @@
             background-color: white;
         }
 
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            transition: filter 0.2s ease, transform 0.2s ease;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.1);
+        }
+
         @media (max-width: 768px) {
             .desktop-layout {
                 flex-direction: column;
@@ -132,27 +142,27 @@
                     <div class="carousel-slide" style="background-image: url('img/slide1.jpg');">
                         <div class="h-full flex flex-col justify-end p-6 bg-gradient-to-t from-black/60 to-transparent">
                             <div class="carousel-content">
-                                <h2 class="text-white text-xl font-bold">Lorem ipsum dolor sit amet</h2>
-                                <p class="text-white/80 text-sm mt-2">Consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.</p>
+                                <h2 class="text-white text-xl font-bold">🌿 Green Living di Jantung Jogja</h2>
+                                <p class="text-white/80 text-sm mt-2">Kos modern dengan suasana asri, nyaman, dan ramah
+                                    lingkungan.</p>
                             </div>
                         </div>
                     </div>
                     <div class="carousel-slide" style="background-image: url('img/slide2.jpg');">
                         <div class="h-full flex flex-col justify-end p-6 bg-gradient-to-t from-black/60 to-transparent">
                             <div class="carousel-content">
-                                <h2 class="text-white text-xl font-bold">Lorem ipsum dolor sit amet</h2>
-                                <p class="text-white/80 text-sm mt-2">Consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.</p>
+                                <h2 class="text-white text-xl font-bold">🏡 Kos Bukan Sekadar Tempat Tinggal</h2>
+                                <p class="text-white/80 text-sm mt-2">Desain modern, fasilitas lengkap, dan ruang yang
+                                    cozy bikin kamu betah berlama-lama.</p>
                             </div>
                         </div>
                     </div>
                     <div class="carousel-slide" style="background-image: url('img/slide3.jpg');">
                         <div class="h-full flex flex-col justify-end p-6 bg-gradient-to-t from-black/60 to-transparent">
                             <div class="carousel-content">
-                                <h2 class="text-white text-xl font-bold">Lorem ipsum dolor sit amet</h2>
-                                <p class="text-white/80 text-sm mt-2">Consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.</p>
+                                <h2 class="text-white text-xl font-bold">📍Lokasi Strategis</h2>
+                                <p class="text-white/80 text-sm mt-2">Akses mudah ke kampus, pusat kota, dan fasilitas
+                                    umum—hidup jadi lebih praktis dan hemat waktu.</p>
                             </div>
                         </div>
                     </div>
@@ -168,16 +178,10 @@
         <!-- Form Section -->
         <div class="font-display form-section w-1/2 bg-white/20 backdrop-filter backdrop-blur-lg p-8 flex flex-col">
             <div class="rounded-2xl p-3 bg-white/30 shadow-lg mb-6 self-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="text-gray-800">
-                    <path d="m10 17 5-5-5-5" />
-                    <path d="M15 12H3" />
-                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
-                </svg>
+                <img src="img/G House.png" alt="G House Logo" width="32" height="32" class="text-gray-800">
             </div>
             <h1 class="text-black font-display mt-2 text-2xl mb-4 text-center">
-                Selamat Datang di <br> <span class="font-bold">G-House Demangan</span>
+                Selamat Datang di <br> <span class="font-bold">G House Jogja Green Living</span>
             </h1>
             <p class="text-center text-sm mb-6">
                 Silakan login untuk menggunakan internet.<br />Untuk bantuan, silakan hubungi
@@ -188,7 +192,7 @@
                 <input type="hidden" name="dst" value="$(link-orig)" />
                 <input type="hidden" name="popup" value="true" />
                 <div class="mb-4">
-                    <label for="username" class="block text-sm font-medium mb-1">Room Number or Username</label>
+                    <label for="username" class="block text-sm font-medium mb-1">Room Number</label>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
@@ -251,136 +255,108 @@
             </form>
             $(if trial == 'yes')
             <div class="mt-4 text-sm /80 text-center">
-                Free trial available,
-                <a class="underline hover:"
-                    href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">click
-                    here</a>.
-            </div>
-            $(endif) $(if error)
-            <div class="mt-4 text-red-600 text-center text-sm">$(error)</div>
-            $(endif)
+                $(endif) $(if error)
+                <div class="mt-4 text-red-600 text-center text-sm">$(error)</div>
+                $(endif)
+                <div class="footer mt-6 text-center">
+                    <div class="social-icons flex justify-center items-center gap-4">
+                        <a href="https://instagram.com/ghouse.jogja" target="_blank"
+                            class="hover:opacity-80 transition-opacity duration-200">
+                            <img src="img/social-media-icon/instagram.png" alt="Instagram" class="social-icon">
+                        </a>
+                        <a href="https://wa.me/6282229991274" target="_blank"
+                            class="hover:opacity-80 transition-opacity duration-200">
+                            <img src="img/social-media-icon/whatsapp.png" alt="WhatsApp" class="social-icon">
+                        </a>
+                    </div>
+                    <p class="text-xs text-gray-600 mt-3">&copy; 2025 G House Jogja Green Living. All rights reserved.
+                    </p>
+                </div>
 
-            <div class="mt-auto pt-4">
-                <div class="text-xs /70 text-center">
-                    Powered by MikroTik RouterOS
-                </div>
-                <div class="mt-2 text-xs /70 text-center">
-                    <a href="$(link-login-only)?target=lv&amp;dst=$(link-orig-esc)"
-                        class="underline hover:">Latviski</a>
-                </div>
-                <div class="flex justify-center mt-3">
-                    <img src="img/logobottom.png" alt="Hotel Logo"
-                        class="w-20 rounded-full shadow border border-white/20" />
-                </div>
             </div>
-            <div class="footer mt-6 text-center">
-                <div class="social-icons flex justify-center items-center gap-4">
-                    <a href="https://instagram.com/yourusername" target="_blank" class="text-gray-700 hover:text-gray-900 transition-colors duration-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-instagram">
-                            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
-                        </svg>
-                    </a>
-                    <a href="https://wa.me/yourphonenumber" target="_blank" class="text-gray-700 hover:text-gray-900 transition-colors duration-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-message-circle">
-                            <path
-                                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
-                            </path>
-                        </svg>
-                    </a>
-                </div>
-                <p class="text-xs text-gray-600 mt-3">&copy; 2025 G-House Demangan. All rights reserved.</p>
-            </div>
-
         </div>
-    </div>
 
 
-    <script type="text/javascript">
-        document.login.username.focus();
+        <script type="text/javascript">
+            document.login.username.focus();
 
-        function togglePassword() {
-            const passwordInput = document.getElementById('password');
-            const eyeIcon = document.getElementById('eye-icon');
-            const eyeOffIcon = document.getElementById('eye-off-icon');
+            function togglePassword() {
+                const passwordInput = document.getElementById('password');
+                const eyeIcon = document.getElementById('eye-icon');
+                const eyeOffIcon = document.getElementById('eye-off-icon');
 
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                eyeIcon.classList.add('hidden');
-                eyeOffIcon.classList.remove('hidden');
-            } else {
-                passwordInput.type = 'password';
-                eyeIcon.classList.remove('hidden');
-                eyeOffIcon.classList.add('hidden');
-            }
-        }
-
-        // Carousel functionality
-        let currentSlide = 0;
-        const carousel = document.getElementById('carousel');
-        const slides = document.querySelectorAll('.carousel-slide');
-        const dots = document.querySelectorAll('.carousel-dot');
-        const totalSlides = slides.length;
-
-        // Set initial state
-        updateCarousel();
-
-        // Auto-advance the carousel every 5 seconds
-        setInterval(() => {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            updateCarousel();
-        }, 5000);
-
-        // Click functionality for dots
-        dots.forEach(dot => {
-            dot.addEventListener('click', () => {
-                currentSlide = parseInt(dot.getAttribute('data-index'));
-                updateCarousel();
-            });
-        });
-
-        function updateCarousel() {
-            // Update carousel position
-            carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
-
-            // Update dots
-            dots.forEach((dot, index) => {
-                if (index === currentSlide) {
-                    dot.classList.add('active');
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    eyeIcon.classList.add('hidden');
+                    eyeOffIcon.classList.remove('hidden');
                 } else {
-                    dot.classList.remove('active');
+                    passwordInput.type = 'password';
+                    eyeIcon.classList.remove('hidden');
+                    eyeOffIcon.classList.add('hidden');
                 }
-            });
-        }
-
-        // Make responsive adjustments on page load and window resize
-        function handleResponsiveLayout() {
-            const container = document.querySelector('.desktop-layout');
-            const carouselSection = document.querySelector('.carousel-section');
-            const formSection = document.querySelector('.form-section');
-
-            if (window.innerWidth <= 768) {
-                container.classList.add('flex-col');
-                carouselSection.style.height = '200px';
-                carouselSection.style.width = '100%';  // Ensure width is 100%
-                formSection.style.width = '100%';
-            } else {
-                container.classList.remove('flex-col');
-                carouselSection.style.height = 'auto';
-                carouselSection.style.width = '50%';  // Restore to 50% on desktop
-                formSection.style.width = '50%';
             }
-        }
 
-        // Initial call and event listener
-        handleResponsiveLayout();
-        window.addEventListener('resize', handleResponsiveLayout);
-    </script>
+            // Carousel functionality
+            let currentSlide = 0;
+            const carousel = document.getElementById('carousel');
+            const slides = document.querySelectorAll('.carousel-slide');
+            const dots = document.querySelectorAll('.carousel-dot');
+            const totalSlides = slides.length;
+
+            // Set initial state
+            updateCarousel();
+
+            // Auto-advance the carousel every 5 seconds
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateCarousel();
+            }, 5000);
+
+            // Click functionality for dots
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    currentSlide = parseInt(dot.getAttribute('data-index'));
+                    updateCarousel();
+                });
+            });
+
+            function updateCarousel() {
+                // Update carousel position
+                carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+                // Update dots
+                dots.forEach((dot, index) => {
+                    if (index === currentSlide) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+
+            // Make responsive adjustments on page load and window resize
+            function handleResponsiveLayout() {
+                const container = document.querySelector('.desktop-layout');
+                const carouselSection = document.querySelector('.carousel-section');
+                const formSection = document.querySelector('.form-section');
+
+                if (window.innerWidth <= 768) {
+                    container.classList.add('flex-col');
+                    carouselSection.style.height = '200px';
+                    carouselSection.style.width = '100%';  // Ensure width is 100%
+                    formSection.style.width = '100%';
+                } else {
+                    container.classList.remove('flex-col');
+                    carouselSection.style.height = 'auto';
+                    carouselSection.style.width = '50%';  // Restore to 50% on desktop
+                    formSection.style.width = '50%';
+                }
+            }
+
+            // Initial call and event listener
+            handleResponsiveLayout();
+            window.addEventListener('resize', handleResponsiveLayout);
+        </script>
 </body>
 
 </html>
